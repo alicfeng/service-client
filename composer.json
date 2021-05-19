@@ -1,0 +1,47 @@
+{
+    "name": "alicfeng/service-client",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "alicfeng",
+            "email": "a@samego.com"
+        }
+    ],
+    "description": "A client for remote calling microservice communication",
+    "keywords": [
+        "response",
+        "interface",
+        "api",
+        "service",
+        "client",
+        "laravel"
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^7.0|^8.0",
+        "ext-json": "*",
+        "friendsofphp/php-cs-fixer": "^2.18"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.4.2",
+        "nunomaduro/collision": "^5.0",
+        "phpunit/phpunit": "^9.3.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Samego\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "php-cs": [
+            "vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix src",
+            "vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix config",
+            "vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix tests"
+        ]
+    }
+}
