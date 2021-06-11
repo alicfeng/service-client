@@ -24,17 +24,22 @@ class Response
     /**
      * @var int response code
      */
-    protected $code;
+    private $code;
 
     /**
      * @var string response message
      */
-    protected $message = '';
+    private $message = '';
 
     /**
      * @var array response data
      */
-    protected $data = [];
+    private $data = [];
+
+    /**
+     * @var string 请求链路标识
+     */
+    private $request_id;
 
     /**
      * @function    setCode
@@ -109,6 +114,30 @@ class Response
     }
 
     /**
+     * @function    getRequestId
+     * @description 获取请求标识
+     * @return string
+     * @datetime    2021/6/11 下午12:48
+     * @author      AlicFeng
+     */
+    public function getRequestId(): string
+    {
+        return $this->request_id;
+    }
+
+    /**
+     * @function    setRequestId
+     * @description 设置请求标识
+     * @param string $request_id 请求标识
+     * @datetime    2021/6/11 下午12:48
+     * @author      AlicFeng
+     */
+    public function setRequestId(string $request_id): void
+    {
+        $this->request_id = $request_id;
+    }
+
+    /**
      * @function    isSucceed
      * @description 判断业务是否请求处理成功
      * @return bool
@@ -131,6 +160,7 @@ class Response
     public function transform(array $origin = []): self
     {
         $this->setCode($origin['code']);
+        $this->setRequestId($GLOBALS['request_id']);
 
         // 失败时
         if ($this->success_code != $origin['code']) {

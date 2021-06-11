@@ -143,9 +143,14 @@ class Request implements HttpRequestInterface
     public function request(): Response
     {
         try {
+            // 1.处理报文
             $this->default['json'] = $this->package;
-            $response              = $this->_client->request($this->method, $this->uri, $this->default);
-            $result                = $response->getBody()->getContents();
+
+            // 2.携带链路追踪标识
+            $this->default['headers']['request_id'] = $GLOBALS['request_id'];
+
+            $response = $this->_client->request($this->method, $this->uri, $this->default);
+            $result   = $response->getBody()->getContents();
 
             Log::info('training convert request package', [$this->method, $this->uri, $this->package, $result]);
 
