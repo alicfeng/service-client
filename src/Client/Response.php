@@ -39,7 +39,7 @@ class Response
     /**
      * @var string 请求链路标识
      */
-    private $request_id;
+    private $request_id = '';
 
     /**
      * @function    setCode
